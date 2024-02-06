@@ -1,0 +1,34 @@
+section {
+    position: relative;
+    width: 100%;
+}
+
+a {
+    float: right;
+    margin-top: -30px;
+}
+
+input, label {
+    display: block;
+}
+
+img {
+    width: 600px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.set-info {
+    margin-top: 50px;
+}
+
+.data {
+    font-weight: 500;
+}
+
+.data-label {
+    float: left;
+    margin-left: 20px;
+}

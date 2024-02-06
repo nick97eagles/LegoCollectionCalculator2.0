@@ -1,0 +1,33 @@
+section {
+    position: relative;
+    width: 100%;
+}
+
+a {
+    float: right;
+    margin-top: -30px;
+}
+
+.set-input-field {
+    margin-right: 3rem;
+}
+
+#add-set-form-btn {
+    margin: .5rem;
+    color: #3f51b5;
+
+    &:hover {
+        cursor: pointer;
+        color:#2e3b83
+    }
+}
+
+#remove-set-form-btn {
+    margin: 1rem;
+    color: #f44336;
+
+    &:hover {
+        cursor: pointer;
+        color: #a72c24;
+    }
+}
