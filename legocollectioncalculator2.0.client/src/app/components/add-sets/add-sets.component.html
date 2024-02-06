@@ -1,0 +1,45 @@
+<mat-card class="card">
+    <section>
+        <mat-card-title>Add Set</mat-card-title>
+        <a mat-raised-button color="primary" [routerLink]="['/view-sets']">View Sets</a>
+    </section>
+    <br>
+    <div class="add-sets-form" [formGroup]="form">
+        <ng-container formArrayName="sets">
+            <ng-container *ngFor="let setForm of sets.controls; let i = index">
+                <div class="sets-form-row" [formGroupName]="i">
+                    <mat-form-field class="set-input-field" appearance="outline">
+                        <mat-label>Set Identification Number</mat-label>
+                        <input matInput placeholder="75269-1" formControlName="setId">
+                        <mat-error *ngIf="setForm.get('setId')?.hasError('required')">
+                            Set Id is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="set-input-field" appearance="outline">
+                        <mat-label>Set Name</mat-label>
+                        <input matInput placeholder="Duel on Mustafar" formControlName="setName">
+                        <mat-error *ngIf="setForm.get('setName')?.hasError('required')">
+                            Set Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Set Condition</mat-label>
+                        <mat-select formControlName="setCondition">
+                            <mat-option value="New">New (Sealed)</mat-option>
+                            <mat-option value="Used">Used</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="setForm.get('setCondition')?.hasError('required')">
+                            Set Condition is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <fa-icon *ngIf="canRemoveRow" id="remove-set-form-btn" [icon]="removeBtn" size="2x" (click)="removeRow(i)"></fa-icon>
+                    <fa-icon *ngIf="i == sets.controls.length -1" id="add-set-form-btn" [icon]="addBtn" size="2x" (click)="addRow()"></fa-icon>
+                </div>
+            </ng-container>
+        </ng-container>
+        <mat-card-actions class="form-btns">
+            <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="addSets()">Add</button>
+            <button mat-raised-button color="warn" (click)="resetForm()">Clear</button>
+        </mat-card-actions>
+    </div>
+</mat-card>

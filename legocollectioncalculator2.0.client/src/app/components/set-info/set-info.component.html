@@ -1,0 +1,44 @@
+<ng-container *ngIf="set == null || priceGuide == null; else DataLoadedTemplate">
+    <mat-card  class="card">
+        <mat-card-title>Loading...</mat-card-title>
+    </mat-card>
+</ng-container>
+
+<ng-template #DataLoadedTemplate>
+    <mat-card class="card">
+        <section>
+            <mat-card-title>{{ set.data.name }}</mat-card-title>
+            <a mat-raised-button color="primary" [routerLink]="['/view-sets']">View Sets</a>
+        </section>
+        <br>
+        <div class="set-info-container">
+            <img src="{{ set.data.image_url }}" alt="Set Image">
+            <section class="set-info">
+                <div class="data-label">
+                    <label for="setNum">Set Number</label>
+                    <div class="data" name="setNum">{{ set.data.no }}</div>
+                </div>
+                <div class="data-label">
+                    <label for="releaseYear">Year Released</label>
+                    <div class="data" name="releaseYear">{{ set.data.year_released }}</div>
+                </div>
+                <div class="data-label">
+                    <label for="isObsolete">Is Obsolete</label>
+                    <div class="data" name="isObsolete">{{ set.data.is_obsolete ? 'Yes' : 'No' }}</div>
+                </div>
+                <div class="data-label">
+                    <label for="avg-price">Avg Price</label>
+                    <div class="data" name="avg-price">{{ priceGuide.avg_price  | currency }}</div>
+                </div>
+                <div class="data-label">
+                    <label for="max-price">Max Price</label>
+                    <div class="data" name="max-price">{{ priceGuide.max_price | currency }}</div>
+                </div>
+                <div class="data-label">
+                    <label for="min-price">Min Price</label>
+                    <div class="data" name="min-price">{{ priceGuide.min_price | currency }}</div>
+                </div>
+            </section>
+        </div>
+    </mat-card>
+</ng-template>

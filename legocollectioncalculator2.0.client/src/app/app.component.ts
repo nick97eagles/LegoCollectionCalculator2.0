@@ -1,37 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SideNavService } from './services/side-nav.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
+export class AppComponent implements AfterViewInit {
+  
+  @ViewChild('sidenav') public sidenav!: MatSidenav
 
-  constructor(private http: HttpClient) {}
+  constructor(private _sidenavService: SideNavService) {}
 
-  ngOnInit() {
-    this.getForecasts();
+  ngAfterViewInit(): void {
+    this._sidenavService.setSidenav(this.sidenav);
   }
-
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  title = 'legocollectioncalculator2.0.client';
 }
