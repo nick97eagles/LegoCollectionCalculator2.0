@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { CSVExtensionMethods } from 'src/app/extensions/convertToCSV.extension';
 import { SetModel } from 'src/app/models/bricklink.models';
 import { faCirclePlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { SetDataService } from 'src/app/services/set-data.service';
@@ -23,8 +22,8 @@ export class AddSetComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _setDataService: SetDataService,
-    private _csvExtension: CSVExtensionMethods) {}
+    private _setDataService: SetDataService
+  ) {}
 
   ngOnInit(): void {
     this.addRow();
@@ -55,14 +54,7 @@ export class AddSetComponent implements OnInit {
   }
 
   public addSets(): void {
-    var jsonData: SetModel[] = this.form.value.sets;
-
-    if (this._setDataService.setListArray) {
-      this.addSetsToList(jsonData);
-    }
-    else {
-      this._csvExtension.downloadCSV(jsonData, 'lego-sets', ['setId', 'setName', 'setCondition']);
-    }
+    
   }
 
   private addSetsToList(sets: SetModel[]): void {

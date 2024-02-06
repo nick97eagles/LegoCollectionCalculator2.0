@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toggleSidenav()">
+    <button mat-icon-button (click)="toggleSidenav()">
       <fa-icon [icon]="menuIcon"></fa-icon>
     </button>
     &nbsp;
-    <span>Lego Value Calculator</span>
+    <span>Lego Collection Calculator</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button class="example-icon favorite-icon" aria-label="download current list" (click)="downloadList()">
-      Download Current List
-    </button>
+    <a type="button" mat-raised-button [routerLink]="['/sign-in']">Sign In</a>
+    &nbsp;
+    <a type="button" mat-raised-button [routerLink]="['/new-user']">New User</a>
 </mat-toolbar>

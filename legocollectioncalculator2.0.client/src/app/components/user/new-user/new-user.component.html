@@ -1,0 +1,44 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Create New User</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-container *ngIf="isDuplicateUsername">
+            <div class="error-message">UserName already exists</div>
+        </ng-container>
+        <ng-container *ngIf="isDuplicateEmail">
+            <div class="error-message">Email already exists</div>
+        </ng-container>
+
+        <form [formGroup]="newUserForm">
+            <div class="form-field-container">
+                <mat-form-field id="userName" appearance="fill">
+                    <mat-label>UserName</mat-label>
+                    <input matInput [formControl]="newUserForm.controls['userName']"/>
+                    <mat-error *ngIf="newUserForm.controls.userName.hasError('required')">
+                        UserName is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field id="password" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" [formControl]="newUserForm.controls.password"/>
+                    <mat-error *ngIf="newUserForm.controls.password.hasError">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field id="email" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput [formControl]="newUserForm.controls.email"/>
+                    <mat-error *ngIf="newUserForm.controls.email.hasError('required')">
+                        Email is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+        <button mat-raised-button color="primary" (click)="createUser()">Save</button>
+        &nbsp;
+        <button mat-raised-button (click)="reset()">Reset</button>
+    </mat-card-actions>
+</mat-card>
