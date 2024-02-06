@@ -1,0 +1,21 @@
+.form-field-container mat-form-field {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    width: 400px !important;
+}
+
+::ng-deep .mat-card>.mat-card-actions:last-child {
+    margin-bottom: 0 !important;
+}
+
+.action-buttons {
+    margin-left: 15px;
+}
+
+.error-message {
+    margin: 15px;
+    color: red;
+}

@@ -11,6 +11,12 @@ mat-sidenav {
     width: 225px;
 }
 
+::ng-deep mat-card {
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
 .main-content {
     background-color: black;
 }

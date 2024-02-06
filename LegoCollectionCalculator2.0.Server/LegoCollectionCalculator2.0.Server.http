@@ -1,0 +1,6 @@
+@LegoCollectionCalculator2._0.Server_HostAddress = http://localhost:5074
+
+GET {{LegoCollectionCalculator2._0.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

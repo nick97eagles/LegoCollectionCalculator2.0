@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Sign In</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="signInForm">
+            <div class="form-field-container">
+                <mat-form-field id="login" appearance="fill">
+                    <mat-label>UserName or Email</mat-label>
+                    <input matInput [formControl]="signInForm.controls.login">
+                    <mat-error *ngIf="signInForm.controls.login.hasError">
+                        Login name is required
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field id="password" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput [formControl]="signInForm.controls.password">
+                    <mat-error *ngIf="signInForm.controls.password.hasError">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+        <button mat-raised-button color="primary">Sign In</button>
+        &nbsp;
+        <button mat-raised-button (click)="reset()">Reset</button>
+    </mat-card-actions>
+</mat-card>
