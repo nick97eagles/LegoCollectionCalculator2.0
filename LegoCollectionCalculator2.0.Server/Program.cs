@@ -27,6 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IRequestHandler<CreateUserRqModel, CreateUserRsModel>, CreateUserHandler>();
+builder.Services.AddScoped<IRequestHandler<LoginRqModel, LoginRsModel>, LoginHandler>();
 
 builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(Ping).Assembly));

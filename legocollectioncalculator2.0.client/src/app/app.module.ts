@@ -11,6 +11,7 @@ import { SetDataService } from './services/set-data.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavService } from './services/side-nav.service';
+import { SetInfoComponent } from './components/set-info/set-info.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SideNavService } from './services/side-nav.service';
     LocalStorageService,
     SetDataService,
     BricklinkService,
-    SideNavService
+    SideNavService,
+    SetInfoComponent
   ],
   bootstrap: [AppComponent]
 })

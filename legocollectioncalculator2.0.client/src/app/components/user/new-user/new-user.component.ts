@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { CreateUserRsModel } from './new-user.models';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CreateUserRsModel } from 'src/app/models/user.models';
 
 @Component({
   selector: 'app-new-user',
