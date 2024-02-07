@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginRsModel, UserInfo } from 'src/app/models/user.models';
 import { UserDataService } from 'src/app/services/userData.service';
 
@@ -21,6 +22,7 @@ export class SignInComponent implements OnInit {
   });
 
   constructor(
+    private _router: Router,
     private _httpClient: HttpClient,
     private _userDataService: UserDataService) { }
 
@@ -65,6 +67,7 @@ export class SignInComponent implements OnInit {
       };
 
       this._userDataService.setUserData(userInfo);
+      this._router.navigateByUrl('/collection');
     }
   }
 }

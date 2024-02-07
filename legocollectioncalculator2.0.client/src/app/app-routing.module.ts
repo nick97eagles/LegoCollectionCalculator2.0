@@ -7,6 +7,7 @@ import { SetInfoComponent } from './components/set-info/set-info.component';
 import { ViewSetsComponent } from './components/view-sets/view-sets.component';
 import { NewUserComponent } from './components/user/new-user/new-user.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
+import { CollectionComponent } from './components/collection/collection.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'sign-in',
     component: SignInComponent
+  },
+  {
+    path: 'collection',
+    component: CollectionComponent
   }
 ];
 

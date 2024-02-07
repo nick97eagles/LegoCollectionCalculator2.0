@@ -3,6 +3,7 @@ export interface CreateUserRsModel {
     collectionId: number;
     userName: string;
     userEmail: string;
+    userRole: string;
     resultMessage: string;
 }
 

@@ -18,7 +18,12 @@ export class LocalStorageService {
     localStorage.removeItem(key);
   }
 
-  public clearData() {
-    localStorage.clear();
+  public clearData(key: string = '') {
+    if (key !== '') {
+      localStorage.removeItem(key);
+    }
+    else {
+      localStorage.clear();
+    }
   }
 }

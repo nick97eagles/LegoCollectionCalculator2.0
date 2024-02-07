@@ -22,6 +22,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { NewUserComponent } from './user/new-user/new-user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
+import { CollectionComponent } from './collection/collection.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
     ConfirmModalComponent,
     NewUserComponent,
     SignInComponent,
+    CollectionComponent,
   ],
   imports: [
     CommonModule,

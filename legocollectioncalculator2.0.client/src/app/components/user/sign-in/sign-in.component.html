@@ -12,7 +12,7 @@
         <ng-container *ngIf="isSuccessfullLogin">
             <div class="success-message">Login Successfull</div>
         </ng-container>
-        <form [formGroup]="signInForm">
+        <form [formGroup]="signInForm" (ngSubmit)="signIn()">
             <div class="form-field-container">
                 <mat-form-field id="login" appearance="fill">
                     <mat-label>UserName or Email</mat-label>
@@ -33,7 +33,7 @@
         </form>
     </mat-card-content>
     <mat-card-actions class="action-buttons">
-        <button mat-raised-button color="primary" (click)="signIn()">Sign In</button>
+        <button type="submit" mat-raised-button color="primary" (click)="signIn()">Sign In</button>
         &nbsp;
         <button mat-raised-button (click)="reset()">Reset</button>
     </mat-card-actions>

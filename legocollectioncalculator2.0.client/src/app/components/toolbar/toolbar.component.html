@@ -5,7 +5,12 @@
     &nbsp;
     <span>Lego Collection Calculator</span>
     <span class="example-spacer"></span>
-    <a type="button" mat-raised-button [routerLink]="['/sign-in']">Sign In</a>
-    &nbsp;
-    <a type="button" mat-raised-button [routerLink]="['/new-user']">New User</a>
+    <div id="username">{{ userName }}</div>
+    &nbsp; &nbsp;
+    <ng-container *ngIf="!isSignedIn">
+      <a  type="button" mat-raised-button [routerLink]="['/sign-in']">Sign In</a>
+      &nbsp;
+      <a type="button" mat-raised-button [routerLink]="['/new-user']">New User</a>
+    </ng-container>
+    <button *ngIf="isSignedIn" mat-raised-button (click)="signOut()">Sign Out</button>
 </mat-toolbar>

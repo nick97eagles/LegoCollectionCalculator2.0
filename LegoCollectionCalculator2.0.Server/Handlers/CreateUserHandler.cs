@@ -48,6 +48,7 @@ namespace LegoCollectionCalculator2._0.Server.Handlers
                 UserName = newUser.UserName,
                 UserEmail = newUser.Email,
                 CollectionId = newUser.CollectionID,
+                UserRole = "User",
                 ResultMessage = "New User Created"
             };
         }
