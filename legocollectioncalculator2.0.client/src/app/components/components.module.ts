@@ -23,6 +23,8 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { NewUserComponent } from './user/new-user/new-user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { CollectionComponent } from './collection/collection.component';
+import { AddThemeComponent } from './add-theme/add-theme.component';
+import { EditThemeComponent } from './collection/modals/edit-theme/edit-theme.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { CollectionComponent } from './collection/collection.component';
     NewUserComponent,
     SignInComponent,
     CollectionComponent,
+    AddThemeComponent,
+    EditThemeComponent,
   ],
   imports: [
     CommonModule,

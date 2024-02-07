@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Remove Set</h1>
+<h1 mat-dialog-title>{{ modalInfo.title }}</h1>
 <div mat-dialog-content>
-    Are you sure you want to remove set from list?
+    {{ modalInfo.message }}
 </div>
 <div class="action-btns" mat-dialog-actions>
-    <button mat-raised-button color="warn" mat-dialog-close="true">Remove</button>
-    <button mat-button mat-dialog-close="false">Cancel</button>
+    <button mat-raised-button color="warn" mat-dialog-close="true">Yes</button>
+    <button mat-button mat-dialog-close="false">No</button>
 </div>

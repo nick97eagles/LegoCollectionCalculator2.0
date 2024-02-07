@@ -8,8 +8,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ConfirmModalComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ConfirmModalComponent>) { }
+  public modalInfo: ConfirmModalModel;
+
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmModalComponent>,
+    @Inject(MAT_DIALOG_DATA) data: ConfirmModalModel
+  ) {
+    this.modalInfo = data;
+  }
 
   ngOnInit(): void { }
 
+}
+
+export interface ConfirmModalModel {
+  title: string;
+  message: string;
 }

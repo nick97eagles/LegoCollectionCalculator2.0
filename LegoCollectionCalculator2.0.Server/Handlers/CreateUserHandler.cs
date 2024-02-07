@@ -63,14 +63,14 @@ namespace LegoCollectionCalculator2._0.Server.Handlers
             return await _userContext.Users.AnyAsync(x => x.Email == email);
         }
 
-        private async Task<Userdbo> CreateNewUser(CreateUserRqModel userModel)
+        private async Task<UserDbo> CreateNewUser(CreateUserRqModel userModel)
         {
             // TODO: Add password contraints 
             var hashedPw = PasswordHelper.ComputeHash(userModel.Password, "SHA512", null);
             var newCollectionId = await _userContext.Users.OrderByDescending(x => x.CollectionID).Select(x => x.CollectionID).FirstOrDefaultAsync();
             var newUserId = await _userContext.Users.OrderByDescending(x => x.UserID).Select(x => x.UserID).FirstOrDefaultAsync();
 
-            var newUser = new Userdbo()
+            var newUser = new UserDbo()
             {
                 UserID = newUserId + 1,
                 UserName = userModel.UserName,

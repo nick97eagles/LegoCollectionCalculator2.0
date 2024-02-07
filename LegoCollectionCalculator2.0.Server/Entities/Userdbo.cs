@@ -1,6 +1,6 @@
 ﻿namespace LegoCollectionCalculator2._0.Server.Entities
 {
-    public class Userdbo
+    public class UserDbo
     {
         public int UserID { get; set; }
 
