@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LegoCollectionCalculator2._0.Server.Entities.Config
 {
-    public class UserEntityConfig : IEntityTypeConfiguration<Userdbo>
+    public class UserEntityConfig : IEntityTypeConfiguration<UserDbo>
     {
-        public void Configure(EntityTypeBuilder<Userdbo> builder)
+        public void Configure(EntityTypeBuilder<UserDbo> builder)
         {
             builder.ToTable("Users", UserContext.DEFAULTSCHEMA);
             builder.HasKey(x => x.UserID);

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { CreateUserRsModel } from './new-user.models';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CreateUserRsModel, UserInfo } from 'src/app/models/user.models';
+import { UserDataService } from 'src/app/services/userData.service';
 
 @Component({
   selector: 'app-new-user',
@@ -27,7 +29,10 @@ export class NewUserComponent implements OnInit {
   public isDuplicateUsername: boolean = false;
   public isDuplicateEmail: boolean = false;
 
-  constructor(private _http: HttpClient) { }
+  constructor(
+    private _router: Router,
+    private _http: HttpClient,
+    private _userDataService: UserDataService) { }
 
   ngOnInit(): void { }
 
@@ -68,6 +73,8 @@ export class NewUserComponent implements OnInit {
         break;
 
       default:
+        this._userDataService.setUserData(result);
+        this._router.navigateByUrl("/collection");
         break;
     }
 

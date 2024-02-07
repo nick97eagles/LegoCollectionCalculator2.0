@@ -1,0 +1,27 @@
+<mat-card>
+    <div class="add-theme-btn">
+        <button mat-raised-button color="primary" (click)="addTheme()">Add Theme</button>
+    </div>
+    <mat-card-header>
+        <mat-card-title>Collections</mat-card-title>
+        <mat-card-subtitle>Current Themes in your collection</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card *ngFor="let theme of themes" class="theme-card" (click)="openTheme()">
+            <div id="trash-icon">
+                <button mat-button color="warn" (click)="deleteTheme(theme.themeID)">
+                    <fa-icon [icon]="trashIcon" size="lg"></fa-icon>
+                </button>
+            </div>
+            <div id="edit-icon">
+                <button mat-button color="primary" (click)="editTheme(theme)">
+                    <fa-icon [icon]="editIcon" size="lg"></fa-icon>
+                </button>
+            </div>
+            <mat-card-header class="theme-content-card">
+                <mat-card-title>{{ theme.name }}</mat-card-title>
+                <mat-card-subtitle>{{ theme.description }}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

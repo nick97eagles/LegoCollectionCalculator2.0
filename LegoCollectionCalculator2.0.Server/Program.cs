@@ -2,6 +2,7 @@ using System.Net.NetworkInformation;
 using LegoCollectionCalculator2._0.Server.Contexts;
 using LegoCollectionCalculator2._0.Server.Handlers;
 using LegoCollectionCalculator2._0.Server.RqModel;
+using LegoCollectionCalculator2._0.Server.RqModels;
 using LegoCollectionCalculator2._0.Server.RsModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -27,11 +28,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IRequestHandler<CreateUserRqModel, CreateUserRsModel>, CreateUserHandler>();
+builder.Services.AddScoped<IRequestHandler<LoginRqModel, LoginRsModel>, LoginHandler>();
+builder.Services.AddScoped<IRequestHandler<CreateThemeRqModel, CreateThemeRsModel>, CreateThemeHandler>();
+builder.Services.AddScoped<IRequestHandler<GetThemesRqModel, GetThemesRsModel>, GetThemesHandler>();
+builder.Services.AddScoped<IRequestHandler<DeleteThemeRqModel, DeleteThemeRsModel>, DeleteThemeHandler>();
+builder.Services.AddScoped<IRequestHandler<EditThemeRqModel, EditThemeRsModel>, EditThemeHandler>();
 
 builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(Ping).Assembly));
 
 builder.Services.AddDbContext<UserContext>(options =>
+{
+    options.UseSqlServer("data source=Desktop;initial catalog=Lego;trusted_connection=true;TrustServerCertificate=True");
+});
+
+builder.Services.AddDbContext<CollectionContext>(options =>
 {
     options.UseSqlServer("data source=Desktop;initial catalog=Lego;trusted_connection=true;TrustServerCertificate=True");
 });

@@ -4,20 +4,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LegoCollectionCalculator2._0.Server.Contexts
 {
-    public class UserContext : DbContext
+    public class CollectionContext : DbContext
     {
         public const string DEFAULTSCHEMA = "dbo";
 
-        public UserContext(DbContextOptions<UserContext> options)
+        public CollectionContext(DbContextOptions<CollectionContext> options)
             : base(options)
         {
         }
 
-        public DbSet<UserDbo> Users { get; set; }
+        public DbSet<ThemeDbo> Themes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserEntityConfig());   
+            modelBuilder.ApplyConfiguration(new ThemeEntityConfig());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

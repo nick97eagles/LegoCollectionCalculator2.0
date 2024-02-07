@@ -1,0 +1,28 @@
+<div class="button-container">
+    <button (click)="dialogRef.close(false)">
+        <fa-icon [icon]="closeIcon"></fa-icon>
+    </button>
+</div>
+<h1>Add Theme</h1>
+<mat-dialog-content>
+    <form [formGroup]="addThemeForm">
+        <div class="form-field-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Theme Name</mat-label>
+                <input matInput [formControl]="addThemeForm.controls.name">
+                <mat-error *ngIf="addThemeForm.controls.name.hasError">
+                    Theme name is required
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput [formControl]="addThemeForm.controls.description"></textarea>
+            </mat-form-field>
+        </div>
+        <mat-dialog-actions class="action-buttons">
+            <button mat-raised-button color="primary" [disabled]="isSaving" (click)="save()">Save</button>
+            <button mat-button (click)="addThemeForm.reset()">Reset</button>
+        </mat-dialog-actions>
+    </form>
+</mat-dialog-content>
