@@ -8,6 +8,7 @@ import { ViewSetsComponent } from './components/view-sets/view-sets.component';
 import { NewUserComponent } from './components/user/new-user/new-user.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
 import { CollectionComponent } from './components/collection/collection.component';
+import { SetsComponent } from './components/sets/sets.component';
 
 const routes: Routes = [
   {
@@ -28,10 +29,6 @@ const routes: Routes = [
     component: ImportSetsComponent
   },
   {
-    path: 'view-sets',
-    component: ViewSetsComponent
-  },
-  {
     path: 'set-info',
     component: SetInfoComponent
   },
@@ -46,6 +43,10 @@ const routes: Routes = [
   {
     path: 'collection',
     component: CollectionComponent
+  },
+  {
+    path: 'sets',
+    component: SetsComponent
   }
 ];
 

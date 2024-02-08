@@ -15,9 +15,12 @@ namespace LegoCollectionCalculator2._0.Server.Contexts
 
         public DbSet<ThemeDbo> Themes { get; set; }
 
+        public DbSet<SetDbo> Sets { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ThemeEntityConfig());
+            modelBuilder.ApplyConfiguration(new  SetEntityConfig());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -33,6 +33,9 @@ builder.Services.AddScoped<IRequestHandler<CreateThemeRqModel, CreateThemeRsMode
 builder.Services.AddScoped<IRequestHandler<GetThemesRqModel, GetThemesRsModel>, GetThemesHandler>();
 builder.Services.AddScoped<IRequestHandler<DeleteThemeRqModel, DeleteThemeRsModel>, DeleteThemeHandler>();
 builder.Services.AddScoped<IRequestHandler<EditThemeRqModel, EditThemeRsModel>, EditThemeHandler>();
+builder.Services.AddScoped<IRequestHandler<AddSetRqModel, AddSetRsModel>, AddSetHandler>();
+builder.Services.AddScoped<IRequestHandler<GetSetsRqModel, GetSetsRsModel>, GetSetsHandler>();
+builder.Services.AddScoped<IRequestHandler<DeleteSetRqModel, DeleteSetRsModel>, DeleteSetHandler>();
 
 builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(Ping).Assembly));

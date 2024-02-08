@@ -23,14 +23,14 @@ namespace LegoCollectionCalculator2._0.Server.Controllers
         [Route("theme")]
         [AllowAnonymous]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetThemes([FromQuery] GetThemesRqModel request)
         {
             var result = await this._mediator.Send(request);
 
             if (result == null)
             {
-                return NoContent();
+                return NotFound();
             }
 
             return Ok(result);
@@ -75,5 +75,43 @@ namespace LegoCollectionCalculator2._0.Server.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("set")]
+        [AllowAnonymous]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetSets([FromQuery] GetSetsRqModel request)
+        {
+            var results = await this._mediator.Send(request);
+
+            if (results == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(results);
+        }
+
+        [HttpPost]
+        [Route("set")]
+        [AllowAnonymous]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> AddSet(AddSetRqModel request)
+        {
+            var result = await this._mediator.Send(request);
+
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("set/{SetID}")]
+        [AllowAnonymous]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteSet([FromRoute] DeleteSetRqModel request)
+        {
+            var result = await _mediator.Send(request);
+
+            return Ok(result);
+        }
     }
 }

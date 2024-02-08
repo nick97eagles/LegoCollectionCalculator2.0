@@ -8,6 +8,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faMarker } from '@fortawesome/free-solid-svg-icons';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { EditThemeComponent } from './modals/edit-theme/edit-theme.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collection',
@@ -24,6 +25,7 @@ export class CollectionComponent implements OnInit {
   private shouldOpenTheme: boolean = true;
 
   constructor(
+    private _router: Router,
     private _http: HttpClient,
     private dialog: MatDialog,
     private _userDataService: UserDataService
@@ -52,9 +54,19 @@ export class CollectionComponent implements OnInit {
     });
   }
 
-  public openTheme(): void {
+  public openTheme(theme: Theme): void {
     if (this.shouldOpenTheme) {
-      console.log('themeOpened')
+      this._router.navigate(
+        ['/sets'],
+        {
+          queryParams: { theme: theme.name },
+          state: { 
+            themeID: theme.themeID,
+            themeName: theme.name
+          }
+        },
+
+      )
     }
   }
 

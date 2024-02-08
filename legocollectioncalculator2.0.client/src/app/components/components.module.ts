@@ -25,6 +25,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { CollectionComponent } from './collection/collection.component';
 import { AddThemeComponent } from './add-theme/add-theme.component';
 import { EditThemeComponent } from './collection/modals/edit-theme/edit-theme.component';
+import { SetsComponent } from './sets/sets.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { EditThemeComponent } from './collection/modals/edit-theme/edit-theme.co
     CollectionComponent,
     AddThemeComponent,
     EditThemeComponent,
+    SetsComponent,
   ],
   imports: [
     CommonModule,
