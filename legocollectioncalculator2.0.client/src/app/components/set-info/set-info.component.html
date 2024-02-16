@@ -1,44 +1,21 @@
-<ng-container *ngIf="set == null || priceGuide == null; else DataLoadedTemplate">
-    <mat-card  class="card">
-        <mat-card-title>Loading...</mat-card-title>
-    </mat-card>
-</ng-container>
+<mat-card>
+    <mat-card-header *ngIf="setInfo === null; else ShowInfoTemplate">
+        <mat-card-title >Loading</mat-card-title>
+    </mat-card-header>
+</mat-card>
 
-<ng-template #DataLoadedTemplate>
-    <mat-card class="card">
-        <section>
-            <mat-card-title>{{ set.data.name }}</mat-card-title>
-            <a mat-raised-button color="primary" [routerLink]="['/view-sets']">View Sets</a>
-        </section>
-        <br>
-        <div class="set-info-container">
-            <img src="{{ set.data.image_url }}" alt="Set Image">
-            <section class="set-info">
-                <div class="data-label">
-                    <label for="setNum">Set Number</label>
-                    <div class="data" name="setNum">{{ set.data.no }}</div>
-                </div>
-                <div class="data-label">
-                    <label for="releaseYear">Year Released</label>
-                    <div class="data" name="releaseYear">{{ set.data.year_released }}</div>
-                </div>
-                <div class="data-label">
-                    <label for="isObsolete">Is Obsolete</label>
-                    <div class="data" name="isObsolete">{{ set.data.is_obsolete ? 'Yes' : 'No' }}</div>
-                </div>
-                <div class="data-label">
-                    <label for="avg-price">Avg Price</label>
-                    <div class="data" name="avg-price">{{ priceGuide.avg_price  | currency }}</div>
-                </div>
-                <div class="data-label">
-                    <label for="max-price">Max Price</label>
-                    <div class="data" name="max-price">{{ priceGuide.max_price | currency }}</div>
-                </div>
-                <div class="data-label">
-                    <label for="min-price">Min Price</label>
-                    <div class="data" name="min-price">{{ priceGuide.min_price | currency }}</div>
-                </div>
-            </section>
+<ng-template #ShowInfoTemplate>
+    <mat-card-header>
+        <mat-card-title>{{ setInfo!.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <img src="{{setInfo!.imageUrl}}" alt="set image" style="width: 500px; height: 300px;">
+        <br><br>
+        <div id="data-labels-container">
+            <data-label class="data-label" [label]="'SetID'" [value]="setInfo!.setId"></data-label>
+            <data-label class="data-label" [label]="'Weight'" [value]="setInfo!.weight + 'g'"></data-label>
+            <data-label class="data-label" [label]="'Year Released'" [value]="setInfo!.yearReleased.toString()"></data-label>
+            <data-label class="data-label" [label]="'Is Obsolete'" [value]="setInfo!.isObsolete ? 'true' : 'false'"></data-label>
         </div>
-    </mat-card>
+    </mat-card-content>
 </ng-template>

@@ -68,9 +68,18 @@ export class SetsComponent implements OnInit {
     })
   }
 
+  public viewSet(rowData: any): void {
+    this._router.navigate(
+      ['/set-info'],
+      {
+        queryParams: { setId: rowData.identificationNumber }
+      }
+    );
+  }
+
   private getSets(themeID: number): void {
     var queryParams = new HttpParams()
-    .append('themeID', this.themeID);
+    .append('themeID', themeID);
 
     this._http.get<GetSetsRsModel>('https://localhost:7276/collection/set', {params: queryParams}).subscribe((resp: GetSetsRsModel) => {
       console.log(resp);

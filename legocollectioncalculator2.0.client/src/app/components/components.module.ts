@@ -26,6 +26,7 @@ import { CollectionComponent } from './collection/collection.component';
 import { AddThemeComponent } from './add-theme/add-theme.component';
 import { EditThemeComponent } from './collection/modals/edit-theme/edit-theme.component';
 import { SetsComponent } from './sets/sets.component';
+import { DataLabelComponent } from './shared/data-label/data-label.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { SetsComponent } from './sets/sets.component';
     AddThemeComponent,
     EditThemeComponent,
     SetsComponent,
+    DataLabelComponent,
   ],
   imports: [
     CommonModule,

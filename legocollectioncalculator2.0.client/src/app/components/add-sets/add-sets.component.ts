@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { SetModel } from 'src/app/models/bricklink.models';
 import { faCirclePlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { SetDataService } from 'src/app/services/set-data.service';
 import { Router } from '@angular/router';

@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
-import { PriceGuideModel, SetApiRsModel } from 'src/app/models/bricklink.models';
+import { GetSetRsModel } from 'src/app/models/bricklink.models';
 import { BricklinkService } from 'src/app/services/bricklink.service';
 
 @Component({
@@ -9,55 +8,24 @@ import { BricklinkService } from 'src/app/services/bricklink.service';
   templateUrl: './set-info.component.html',
   styleUrls: ['./set-info.component.scss']
 })
-export class SetInfoComponent implements OnInit, OnDestroy {
+export class SetInfoComponent implements OnInit {
 
-  setId!: number;
-  destroy$: Subject<boolean> = new Subject<boolean>();
-  set!: SetApiRsModel;
-  priceGuide!: PriceGuideModel;
+  public setInfo: GetSetRsModel | null;
 
-  constructor(private route: ActivatedRoute, private _bricklinkService: BricklinkService) { }
+  constructor(
+    private _route: ActivatedRoute,
+    private _bricklinkService: BricklinkService)
+  {
+      this.setInfo = null;
+  }
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.getSetInfo(params['id'].toString());
-      this.getPriceGuide(params['id'].toString(), params['type'].toString(), params['condition'].toString());
+  public ngOnInit(): void {
+    var setId = this._route.snapshot.queryParamMap.get('setId');
+
+    this._bricklinkService.GetSetInfo(setId!).subscribe((resp: GetSetRsModel) => {
+      this.setInfo = resp;
+      console.log(this.setInfo.imageUrl);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
-
-  private getSetInfo(setId: string): void {
-    this._bricklinkService.getSetInfo(setId).pipe(takeUntil(this.destroy$)).subscribe((resp: SetApiRsModel) => {
-      this.set = resp;
-      this.set.data.name = this.findAndReplaceCodedEntity(this.set.data.name);
-    });
-  }
-
-  private getPriceGuide(setId: string, type: string, condition: string): void {
-    this._bricklinkService.getPriceGuide(setId, type, condition).pipe(takeUntil(this.destroy$)).subscribe(resp => {
-      this.priceGuide = resp.data;
-    });
-  }
-
-  private findAndReplaceCodedEntity(string: string): string {
-    // HTML Code entity starts with & and ends with ;
-    let entityBeginning = string.indexOf('&');
-    let entityEnd = string.indexOf(';');
-    let codedEntity = string.substring(entityBeginning, entityEnd + 1)
-    let decodedEntity = this.decodeEntities(codedEntity);
-    return string.replace(codedEntity, decodedEntity!);
-  }
-
-  private decodeEntities = (s: any) => {
-    const el = document.createElement('p');
-    el.innerHTML = s;
-    const str = el.textContent;
-
-    return str;
   }
 
 }

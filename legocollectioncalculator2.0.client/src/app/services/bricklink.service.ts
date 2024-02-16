@@ -1,36 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SetApiRsModel } from '../models/bricklink.models';
+import { GetSetRsModel } from '../models/bricklink.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BricklinkService {
 
-  rootUrl = '/api';
+  private baseUrl = 'https://localhost:7276/bricklink/';
 
-  constructor(private _httpService: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
-  public getMinifigInfo(minifigId: string): Observable<any> {
-    const params = new HttpParams().set('minifigId', minifigId);
-    return this._httpService.get(`${this.rootUrl}/minifig/info`, {params});
+  public GetSetInfo(setId: string): Observable<GetSetRsModel>{
+    return this._http.get<GetSetRsModel>(this.baseUrl + `set/${setId}`);
   }
 
-  public getSetInfo(setId: string): Observable<SetApiRsModel> {
-    const params = new HttpParams().set('setId', setId);
-    return this._httpService.get<SetApiRsModel>(`${this.rootUrl}/set/info`, {params});
-  }
-
-  public getPriceGuide(id: string, type: string, condition: string): Observable<any> {
-    const params = new HttpParams({
-      fromObject: {
-        id: id,
-        type: type,
-        condition: condition == 'Used' ? 'U' : 'N'
-      }
-    });
-    
-    return this._httpService.get(`${this.rootUrl}/priceguide`, {params});
-  }
 }

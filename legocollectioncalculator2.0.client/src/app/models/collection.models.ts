@@ -29,7 +29,7 @@ export interface AddSetModel {
 export interface GetSetModel {
     setID: number;
     themeID: number
-    identificationNum: string;
+    identificationNumber: string;
     name: string;
     condition: string;
 }
