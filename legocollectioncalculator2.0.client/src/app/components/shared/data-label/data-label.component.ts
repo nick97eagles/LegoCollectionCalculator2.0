@@ -9,6 +9,7 @@ export class DataLabelComponent implements OnInit {
 
   @Input() public label: string = '';
   @Input() public value: string = '';
+  @Input() public isCurrencyValue: boolean = false;
 
   constructor() { }
 
