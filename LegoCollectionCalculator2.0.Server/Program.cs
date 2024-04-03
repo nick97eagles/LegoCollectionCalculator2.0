@@ -1,9 +1,12 @@
 using System.Net.NetworkInformation;
+using AutoMapper;
 using LegoCollectionCalculator2._0.Server.Contexts;
 using LegoCollectionCalculator2._0.Server.Handlers;
+using LegoCollectionCalculator2._0.Server.Helpers;
 using LegoCollectionCalculator2._0.Server.RqModel;
 using LegoCollectionCalculator2._0.Server.RqModels;
 using LegoCollectionCalculator2._0.Server.RsModels;
+using LegoCollectionCalculator2._0.Server.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,15 +30,32 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Services
+builder.Services.AddTransient<IBrickLinkService, BrickLinkService>();
+
+// Endpoints
 builder.Services.AddScoped<IRequestHandler<CreateUserRqModel, CreateUserRsModel>, CreateUserHandler>();
 builder.Services.AddScoped<IRequestHandler<LoginRqModel, LoginRsModel>, LoginHandler>();
 builder.Services.AddScoped<IRequestHandler<CreateThemeRqModel, CreateThemeRsModel>, CreateThemeHandler>();
 builder.Services.AddScoped<IRequestHandler<GetThemesRqModel, GetThemesRsModel>, GetThemesHandler>();
 builder.Services.AddScoped<IRequestHandler<DeleteThemeRqModel, DeleteThemeRsModel>, DeleteThemeHandler>();
 builder.Services.AddScoped<IRequestHandler<EditThemeRqModel, EditThemeRsModel>, EditThemeHandler>();
+builder.Services.AddScoped<IRequestHandler<AddSetRqModel, AddSetRsModel>, AddSetHandler>();
+builder.Services.AddScoped<IRequestHandler<GetSetsRqModel, GetSetsRsModel>, GetSetsHandler>();
+builder.Services.AddScoped<IRequestHandler<DeleteSetRqModel, DeleteSetRsModel>, DeleteSetHandler>();
+builder.Services.AddScoped<IRequestHandler<GetSetRqModel, GetSetRsModel>, GetSetHandler>();
+builder.Services.AddScoped<IRequestHandler<GetSetPriceGuideRqModel, GetSetPriceGuideRsModel>, GetSetPriceGuideHandler>();
 
 builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(Ping).Assembly));
+
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AmProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 builder.Services.AddDbContext<UserContext>(options =>
 {

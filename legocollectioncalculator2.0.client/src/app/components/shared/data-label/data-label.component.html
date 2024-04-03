@@ -1,0 +1,21 @@
+<ng-container *ngIf="!isCurrencyValue; else CurrencyTemplate">
+    <div id="data-label-container">
+        <div id="label">
+            {{ label }}
+        </div>
+        <div id="value">
+            {{ value }}
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #CurrencyTemplate>
+    <div id="data-label-container">
+        <div id="label">
+            {{ label }}
+        </div>
+        <div id="value">
+            {{ value | currency:'USD':'symbol' }}
+        </div>
+    </div>
+</ng-template>
