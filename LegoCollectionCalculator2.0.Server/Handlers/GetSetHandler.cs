@@ -22,16 +22,14 @@ namespace LegoCollectionCalculator2._0.Server.Handlers
         public async Task<GetSetRsModel> Handle(GetSetRqModel request, CancellationToken cancellation)
         {
             var result = await _brickLinkService.GetSet(request.SetID);
-            BricklinkSetDbo? parsedResult = JsonConvert.DeserializeObject<BricklinkSetDbo>(result);
+            BricklinkRespDbo<BricklinkSetDbo>? parsedResult = JsonConvert.DeserializeObject<BricklinkRespDbo<BricklinkSetDbo>>(result);
 
             if (parsedResult == null)
             {
                 return new GetSetRsModel();
             }
 
-            var mappedResult = _mapper.Map<BricklinkSetDbo, GetSetRsModel>(parsedResult);
-
-            return mappedResult;            
+            return _mapper.Map<BricklinkRespDbo<BricklinkSetDbo>, GetSetRsModel>(parsedResult);
         }
     }
 }
