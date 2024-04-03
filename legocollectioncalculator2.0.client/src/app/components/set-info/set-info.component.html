@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-header *ngIf="setInfo === null; else ShowInfoTemplate">
+    <mat-card-header *ngIf="setInfo === null || priceGuide === null; else ShowInfoTemplate">
         <mat-card-title >Loading</mat-card-title>
     </mat-card-header>
 </mat-card>
@@ -16,6 +16,12 @@
             <data-label class="data-label" [label]="'Weight'" [value]="setInfo!.weight + 'g'"></data-label>
             <data-label class="data-label" [label]="'Year Released'" [value]="setInfo!.yearReleased.toString()"></data-label>
             <data-label class="data-label" [label]="'Is Obsolete'" [value]="setInfo!.isObsolete ? 'true' : 'false'"></data-label>
+        </div>
+        <br>
+        <div id="price-guide-container">
+            <data-label class="data-label" [label]="'Highest Price'" [value]="priceGuide!.highest_Price" [isCurrencyValue]="true"></data-label>
+            <data-label class="data-label" [label]="'Lowest Price'" [value]="priceGuide!.lowest_Price" [isCurrencyValue]="true"></data-label>
+            <data-label class="data-label" [label]="'Average Price'" [value]="priceGuide!.average_Price" [isCurrencyValue]="true"></data-label>
         </div>
     </mat-card-content>
 </ng-template>

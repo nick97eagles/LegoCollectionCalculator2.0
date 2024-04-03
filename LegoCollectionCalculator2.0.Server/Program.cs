@@ -44,6 +44,7 @@ builder.Services.AddScoped<IRequestHandler<AddSetRqModel, AddSetRsModel>, AddSet
 builder.Services.AddScoped<IRequestHandler<GetSetsRqModel, GetSetsRsModel>, GetSetsHandler>();
 builder.Services.AddScoped<IRequestHandler<DeleteSetRqModel, DeleteSetRsModel>, DeleteSetHandler>();
 builder.Services.AddScoped<IRequestHandler<GetSetRqModel, GetSetRsModel>, GetSetHandler>();
+builder.Services.AddScoped<IRequestHandler<GetSetPriceGuideRqModel, GetSetPriceGuideRsModel>, GetSetPriceGuideHandler>();
 
 builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(Ping).Assembly));

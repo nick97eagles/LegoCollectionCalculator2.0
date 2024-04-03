@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GetSetRsModel } from '../models/bricklink.models';
+import { GetSetPriceGuideRsModel, GetSetRsModel } from '../models/bricklink.models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,11 @@ export class BricklinkService {
 
   constructor(private _http: HttpClient) { }
 
-  public GetSetInfo(setId: string): Observable<GetSetRsModel>{
+  public GetSetInfo(setId: string): Observable<GetSetRsModel> {
     return this._http.get<GetSetRsModel>(this.baseUrl + `set/${setId}`);
   }
 
+  public GetSetPriceGuide(setId: string, n_or_u: string): Observable<GetSetPriceGuideRsModel> {
+    return this._http.get<GetSetPriceGuideRsModel>(this.baseUrl + `set/priceGuide/${setId}/${n_or_u}`);
+  }
 }

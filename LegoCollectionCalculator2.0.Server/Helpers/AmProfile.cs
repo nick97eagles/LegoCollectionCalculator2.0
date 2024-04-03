@@ -8,7 +8,7 @@ namespace LegoCollectionCalculator2._0.Server.Helpers
     {
         public AmProfile()
         {
-            CreateMap<BricklinkSetDbo, GetSetRsModel>()
+            CreateMap<BricklinkRespDbo<BricklinkSetDbo>, GetSetRsModel>()
                 .ForMember(dest => dest.SetId,
                     x => x.MapFrom(src => src.Data.No))
                 .ForMember(dest => dest.Name,
@@ -29,6 +29,14 @@ namespace LegoCollectionCalculator2._0.Server.Helpers
                     x => x.MapFrom(src => src.Data.Year_released))
                 .ForMember(dest => dest.IsObsolete,
                     x => x.MapFrom(src => src.Data.Is_obsolete));
+
+            CreateMap<BricklinkRespDbo<BricklinkPriceGuideDbo>, GetSetPriceGuideRsModel>()
+                .ForMember(dest => dest.Highest_Price,
+                    x => x.MapFrom(src => src.Data.Max_price))
+                .ForMember(dest => dest.Lowest_Price,
+                    x => x.MapFrom(src => src.Data.Min_price))
+                .ForMember(dest => dest.Average_Price,
+                    x => x.MapFrom(src => src.Data.Avg_price));
         }
     }
 }

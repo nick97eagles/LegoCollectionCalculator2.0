@@ -72,7 +72,10 @@ export class SetsComponent implements OnInit {
     this._router.navigate(
       ['/set-info'],
       {
-        queryParams: { setId: rowData.identificationNumber }
+        queryParams: {
+          setId: rowData.identificationNumber,
+          setCondition: rowData.condition
+        }
       }
     );
   }

@@ -35,5 +35,21 @@ namespace LegoCollectionCalculator2._0.Server.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("set/priceGuide/{SetID}/{N_or_u}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetSetPriceGuide([FromRoute] GetSetPriceGuideRqModel request)
+        {
+            var result = await this._mediator.Send(request);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }

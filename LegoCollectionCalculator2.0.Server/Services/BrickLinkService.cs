@@ -18,5 +18,15 @@ namespace LegoCollectionCalculator2._0.Server.Services
 
             return response;
         }
+
+        public async Task<string> GetSetPriceGuide(string itemId, string n_or_u, CancellationToken cancellactionToken = default)
+        {
+            var setCondition = n_or_u[0];
+            var url = new Uri(baseUri, $"items/set/{itemId}/price?new_or_used={setCondition}").ToString();
+            var _httpClient = new HttpClient();
+            var response = await _httpClient.ExecuteRequestAsync(url, HttpMethod.Get, cancellactionToken);
+
+            return response;
+        }
     }
 }

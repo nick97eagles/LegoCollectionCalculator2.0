@@ -11,6 +11,12 @@ export interface GetSetRsModel {
     isObsolete: boolean;
 }
 
+export interface GetSetPriceGuideRsModel {
+    lowest_Price: string;
+    highest_Price: string;
+    average_Price: string;
+}
+
 export interface SetModel {
     setName: string;
     setId: string;
