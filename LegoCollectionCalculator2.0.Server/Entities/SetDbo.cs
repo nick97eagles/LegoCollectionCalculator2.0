@@ -11,5 +11,7 @@
         public string IdentificationNumber { get; set; }
 
         public string Condition { get; set; }
+
+        public string? AvgPrice { get; set; }
     }
 }
