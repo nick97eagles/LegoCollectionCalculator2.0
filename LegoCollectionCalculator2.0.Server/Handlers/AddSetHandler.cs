@@ -1,20 +1,32 @@
 ﻿using System.Threading;
+using AutoMapper;
+using Azure.Core;
 using LegoCollectionCalculator2._0.Server.Contexts;
 using LegoCollectionCalculator2._0.Server.Entities;
+using LegoCollectionCalculator2._0.Server.Entities.Bricklink;
 using LegoCollectionCalculator2._0.Server.RqModels;
 using LegoCollectionCalculator2._0.Server.RsModels;
+using LegoCollectionCalculator2._0.Server.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace LegoCollectionCalculator2._0.Server.Handlers
 {
     public class AddSetHandler : IRequestHandler<AddSetRqModel, AddSetRsModel>
     {
+        private readonly IMapper _mapper;
         private readonly CollectionContext _collectionContext;
+        private readonly IBrickLinkService _brickLinkService;
 
-        public AddSetHandler(CollectionContext collectionContext)
+        public AddSetHandler(
+            IMapper mapper,
+            IBrickLinkService brickLinkService,
+            CollectionContext collectionContext)
         {
+            _mapper = mapper;
             _collectionContext = collectionContext;
+            _brickLinkService = brickLinkService;
         }
 
         public async Task<AddSetRsModel> Handle(AddSetRqModel request, CancellationToken cancellationToken)
@@ -37,13 +49,16 @@ namespace LegoCollectionCalculator2._0.Server.Handlers
 
             foreach (var set in request.Sets)
             {
+                var priceGuide = await GetPriceGuideAsync(set.IdentificationNum, set.Condition, cancellationToken);
+
                 var newSet = new SetDbo
                 {
                     SetID = newSetID,
                     ThemeID = request.ThemeID,
                     Name = set.Name,
                     IdentificationNumber = set.IdentificationNum,
-                    Condition = set.Condition
+                    Condition = set.Condition,
+                    AvgPrice = priceGuide?.Average_Price
                 };
 
                 setList.Add(newSet);
@@ -51,6 +66,19 @@ namespace LegoCollectionCalculator2._0.Server.Handlers
             }
 
             return setList;
+        }
+
+        private async Task<GetSetPriceGuideRsModel> GetPriceGuideAsync(string identificationNum, string condition, CancellationToken cancellationToken)
+        {
+            var response = await _brickLinkService.GetSetPriceGuide(identificationNum, condition, cancellationToken);
+            BricklinkRespDbo<BricklinkPriceGuideDbo>? parsedResult = JsonConvert.DeserializeObject<BricklinkRespDbo<BricklinkPriceGuideDbo>>(response);
+
+            if (parsedResult == null)
+            {
+                return new GetSetPriceGuideRsModel();
+            }
+
+            return _mapper.Map<BricklinkRespDbo<BricklinkPriceGuideDbo>, GetSetPriceGuideRsModel>(parsedResult);
         }
     }
 }
